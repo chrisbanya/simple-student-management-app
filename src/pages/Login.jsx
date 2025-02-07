@@ -1,5 +1,4 @@
-// src/pages/Login.jsx
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -100,7 +99,7 @@ const Login = () => {
                       placeholder="Enter password"
                     />
                     <svg
-                    onClick={handleTogglePassword}
+                      onClick={handleTogglePassword}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="#bbb"
                       stroke="#bbb"

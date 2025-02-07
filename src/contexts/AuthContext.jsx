@@ -1,5 +1,4 @@
-// src/contexts/AuthContext.jsx
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -8,7 +7,7 @@ const dummyUser = { email: "admin@example.com", password: "password123" };
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Check localStorage for existing auth state on mount
+  // Checking localStorage for existing auth state on mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setUser(JSON.parse(storedUser));

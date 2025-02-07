@@ -1,11 +1,9 @@
-// src/pages/StudentList.jsx
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { StudentContext } from "../contexts/StudentContext";
 
 const StudentList = () => {
   const { students, searchTerm } = useContext(StudentContext);
-//   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredStudents = students.filter(
     (student) =>

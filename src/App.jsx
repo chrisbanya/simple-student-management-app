@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -9,8 +8,6 @@ import Login from "./pages/Login";
 import StudentList from "./pages/StudentList";
 import StudentDetail from "./pages/StudentDetails";
 import StudentEdit from "./pages/StudentEdit";
-
-
 
 const App = () => {
   return (
@@ -26,7 +23,7 @@ const App = () => {
               <Route path="/students/:id" element={<StudentDetail />} />
               <Route path="/students/:id/edit" element={<StudentEdit />} />
             </Route>
-            {/* Redirect or fallback route can be added here */}
+            {/* Redirect */}
             <Route path="*" element={<Login />} />
           </Routes>
         </Router>

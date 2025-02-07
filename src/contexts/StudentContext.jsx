@@ -1,8 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-// src/contexts/StudentContext.jsx
+
 import React, { createContext, useState } from "react";
 
-// Dummy initial data
+// Dummy  data
 const initialStudents = [
   {
     id: 1,
