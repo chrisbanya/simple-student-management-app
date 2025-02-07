@@ -1,5 +1,4 @@
-// src/pages/StudentEdit.jsx
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { StudentContext } from "../contexts/StudentContext";
 
@@ -52,49 +51,60 @@ const StudentEdit = () => {
   };
 
   return (
-    <div>
-      <h2>Edit Student</h2>
+    <div className="bg-gray-50">
+      <h2 className="text-center py-4 text-lg text-blue-700">Edit Student</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
+        <div className="flex flex-col justify-center max-w-lg mx-auto space-y-6 p-4 mt-6 rounded-3xl bg-white shadow">
+          <div>
+            <label className="mb-2 text-base block">Name:</label>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              className="px-4 py-2.5 text-lg rounded-md bg-white border border-gray-400 w-full outline-blue-500"
+            />
+          </div>
+          <div>
+            <label className="mb-2 text-base block">Email:</label>
+            <input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="px-4 py-2.5 text-lg rounded-md bg-white border border-gray-400 w-full outline-blue-500"
+            />
+          </div>
+          <div>
+            <label className="mb-2 text-base block">Age:</label>
+            <input
+              name="age"
+              type="number"
+              value={form.age}
+              onChange={handleChange}
+              required
+              className="px-4 py-2.5 text-lg rounded-md bg-white border border-gray-400 w-full outline-blue-500"
+            />
+          </div>
+          <div>
+            <label className="mb-2 text-base block">Course:</label>
+            <input
+              name="course"
+              value={form.course}
+              onChange={handleChange}
+              required
+              className="px-4 py-2.5 text-lg rounded-md bg-white border border-gray-400 w-full outline-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="cursor-pointer px-5 py-2.5 rounded-lg border outline-none text-sm bg-blue-700 hover:bg-transparent text-white hover:text-blue-700 transition-all duration-300"
+          >
+            Save
+          </button>
         </div>
-        <div>
-          <label>Email:</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Age:</label>
-          <input
-            name="age"
-            type="number"
-            value={form.age}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Course:</label>
-          <input
-            name="course"
-            value={form.course}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Save</button>
       </form>
     </div>
   );
