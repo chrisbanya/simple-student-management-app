@@ -1,7 +1,9 @@
-import  { useContext } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { StudentContext } from "../contexts/StudentContext";
+import { FiSearch } from "react-icons/fi";
+
 
 const NavBar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -15,38 +17,36 @@ const NavBar = () => {
   };
 
   return (
-    <header className="flex border-b py-3 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[65px] tracking-wide relative z-50">
-      <div className="flex flex-wrap items-center gap-4 max-w-screen-xl mx-auto w-full">
-        <div className="max-lg:hidden lg:!block max-lg:w-full max-lg:fixed max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50">
-          <div className="text-blue-700">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-3">
+        <div className="order-1 w-1/2 md:w-auto">
+          <span className="text-xl font-bold text-blue-600">
             {user ? <Link to="/students">SMS</Link> : <p>SMS</p>}
-          </div>
+          </span>
         </div>
         {user && (
-          <div className="flex gap-4 ml-auto">
-            <div className="flex max-w-xs w-full bg-gray-100 px-4 py-2 rounded outline outline-transparent border border-blue-700 focus-within:border-blue-600 focus-within:bg-transparent transition-all">
-              <input
-                type="text"
-                placeholder="Search by name or course"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full text-sm bg-transparent rounded outline-none pr-2 border-blue-700"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 192.904 192.904"
-                width="16px"
-                className="cursor-pointer fill-gray-400"
-              >
-                <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
-              </svg>
-            </div>
+          <div className="order-2 w-1/2 text-right md:w-auto md:order-3">
             <button
               onClick={handleLogout}
-              className="px-2 py-2.5 rounded-lg border border-blue-700 bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300 text-sm cursor-pointer"
+              className="px-4 py-2 text-sm text-blue-600 border border-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition duration-300"
             >
-              LogOut
+              Logout
+             
             </button>
+          </div>
+        )}
+        {user && (
+          <div className="order-3 w-full mt-3 md:order-2 md:w-1/2 md:mt-0">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 border-blue-700"
+              />
+              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+            </div>
           </div>
         )}
       </div>
