@@ -1,8 +1,7 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { StudentProvider } from "./contexts/StudentContext";
-import NavBar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 import StudentList from "./pages/StudentList";
@@ -14,7 +13,7 @@ const App = () => {
     <AuthProvider>
       <StudentProvider>
         <Router>
-          <NavBar />
+          <Navbar />
           <Routes>
             <Route path="/login" element={<Login />} />
             {/* Protected Routes */}
