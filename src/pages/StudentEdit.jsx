@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { StudentContext } from "../contexts/StudentContext";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StudentEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { students, updateStudent } = useContext(StudentContext);
   const student = students.find((stu) => stu.id === parseInt(id));
+  const notify = () => toast.success("Student updated successfully.", {transition: Bounce});
 
   const [form, setForm] = useState({
     name: student?.name || "",
@@ -45,7 +48,9 @@ const StudentEdit = () => {
     if (!validateForm()) return;
 
     updateStudent(id, form);
-    setMessage("Student updated successfully.");
+    notify()
+    // setMessage("Student updated successfully.");
+
     // Optionally redirect back to the detail page after saving
     setTimeout(() => navigate(`/students/${id}`), 1500);
   };
@@ -53,6 +58,7 @@ const StudentEdit = () => {
   return (
     <div className="bg-gray-50">
       <h2 className="text-center py-4 text-lg text-blue-700">Edit Student</h2>
+        <ToastContainer draggablePercent={50} limit={2}/>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col justify-center max-w-lg mx-auto space-y-6 p-4 mt-6 rounded-3xl bg-white shadow">
