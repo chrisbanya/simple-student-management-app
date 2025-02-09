@@ -1,16 +1,27 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { VscMail } from "react-icons/vsc";
 import { MdOutlineVisibility } from "react-icons/md";
 import { MdOutlineVisibilityOff } from "react-icons/md";
+import { ToastContainer, toast, Bounce, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const notify = () =>
+    toast.error("invalid credentials!", { transition: Bounce });
+  const notifyInfo = () =>
+    toast.info("email: admin@example.com, password: password123", {
+      transition: Slide,
+    });
+  useEffect(() => {
+    notifyInfo();
+  }, []);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,13 +33,15 @@ const Login = () => {
     if (success) {
       navigate("/students");
     } else {
-      setError("Invalid credentials!");
+      // setError("Invalid credentials!");
+      notify();
     }
   };
 
   return (
     <section>
       <div className="bg-gray-50 font-[sans-serif]">
+        <ToastContainer draggablePercent={50} limit={3} className="mt-10" />
         <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
           <div className="max-w-md w-full">
             <div className="p-8 rounded-2xl bg-white shadow">
@@ -36,7 +49,7 @@ const Login = () => {
                 Sign in
               </h2>
               <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-                {error && <p className="text-red-500">{error}</p>}
+                {/* {error && <p className="text-red-500">{error}</p>} */}
                 <div>
                   <label className="text-gray-800 text-sm mb-2 block">
                     Email
